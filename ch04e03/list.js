@@ -1,4 +1,3 @@
-// Your code here.
 function arrayToList(array){
   if (array.length == 1)
     return {value: array[0], rest: null};
