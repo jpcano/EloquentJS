@@ -14,7 +14,7 @@ View.prototype.countAll = function(ch) {
 
 function SmartPlantEater() {
     this.energy = 20;
-    this.dir = "s";
+    this.rest = 0;
 }
 
 SmartPlantEater.prototype.act = function(view) {
@@ -22,9 +22,15 @@ SmartPlantEater.prototype.act = function(view) {
     var height = view.world.grid.height;
     var size = (width * height)
     
+    if (this.rest > 0) {
+  	this.rest--;
+	return null;
+    }
     var space = view.find(" ");
-    if (this.energy > 60 && space && view.countAll("*") > size / 4)
+    if (this.energy > 60 && space && view.countAll("*") > size / 2) {
+	this.rest = 16;
 	return {type: "reproduce", direction: space};
+    }
     var plant = view.find("*");
     if (plant)
 	return {type: "eat", direction: plant};
