@@ -1,9 +1,3 @@
-// Your code here
-function dirPlus(dir, n) {
-    var index = directionNames.indexOf(dir);
-    return directionNames[(index + n + 8) % 8];
-}
-
 View.prototype.countAll = function(ch) {
     var n = 0;
     this.world.grid.forEach(function(critter, vector) {
