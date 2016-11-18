@@ -1,6 +1,6 @@
 (function(exports) {
     var names = ["January", "February", "March", "April",
-		 "May", "June", "July", "Augoust", "September",
+		 "May", "June", "July", "August", "September",
 		 "October", "November", "December"];
 
     exports.name = function(number) {
