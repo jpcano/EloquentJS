@@ -1,10 +1,18 @@
 // Modify these definitions...
 
-topEnv["array"] = "...";
+topEnv["array"] = function () {
+    return Array.prototype.slice.call(arguments, 0);
+};
 
-topEnv["length"] = "...";
+topEnv["length"] = function (array) {
+    return array.length;
+};
 
-topEnv["element"] = "...";
+
+topEnv["element"] = function (array, i) {
+    return array[i];
+};
+
 
 run("do(define(sum, fun(array,",
     "     do(define(i, 0),",
