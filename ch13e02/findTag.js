@@ -3,31 +3,24 @@
   spans.</p>
 
 <script>
-  function talksAbout(node, string) {
-  	if (node.nodeType == document.ELEMENT_NODE) {
-    	for (var i = 0; i < node.childNodes.length; i++) {
-      		if (talksAbout(node.childNodes[i], string))
-        	return true;
-    	}
-    	return false;
-  	} else if (node.nodeType == document.TEXT_NODE) {
-    	return node.nodeValue.indexOf(string) > -1;
-  	}
-  }
-  
   function byTagName(node, tagName) {
-    var result = [];
-  	if (node.nodeType == document.ELEMENT_NODE) {
-        if (node.tagName.toLowerCase() == tagName) {
-        	result.concat(node);
+    var nodes = [];
+    var tag = tagName.toUpperCase();
+
+    function findTag(rootNode) {
+      for (var i = 0; i < rootNode.childNodes.length; i++) {
+        var child = rootNode.childNodes[i];
+        if (child.nodeType == document.ELEMENT_NODE) {
+          if (child.tagName == tag)
+            nodes.push(child);
+          findTag(child);
         }
-    	for (var i = 0; i < node.childNodes.length; i++) {
-        	result.concat(byTagName(node.childNodes[i], tagName));
-        }
-    }
-    return result;
+      }
+  	}
+    findTag(node);
+    return nodes;
   }
-  
+
   console.log(byTagName(document.body, "h1").length);
   // → 1
   console.log(byTagName(document.body, "span").length);
