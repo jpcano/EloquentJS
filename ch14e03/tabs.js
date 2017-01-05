@@ -57,6 +57,8 @@
       findTag(node);
       return nodes;
     }
+    
+    button[0].click();
   }
 
   asTabs(document.querySelector("#wrapper"));
