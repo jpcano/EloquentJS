@@ -2,9 +2,9 @@ function all(promises) {
     var pending = promises.length;
     var result = [];
     return new Promise(function (success, fail) {
-        promises.forEach(function (promise, i) {
-            promise.then(function (val) {
-                result[i] = val;
+        for (var i = 0; i < promises.length; i++) {
+            promises[i].then(function (val) {
+                result[val - 1] = val;
                 pending -= 1;
                 if (pending == 0)
                     success(result);
@@ -12,7 +12,7 @@ function all(promises) {
                 function (error) {
                     fail(error);
                 });
-        });
+        }
         if (promises.length == 0)
             success(result);
     });
